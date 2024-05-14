@@ -1,17 +1,17 @@
-const axios = require('axios');
-const fetch = require('node-fetch');
+import { get } from 'axios';
+import fetch from 'node-fetch';
 
-module.exports.GitHub = class {
-    constructor(options){
+export class GitHub {
+    constructor(options) {
         this.options = options;
     }
-    
-    login(req, res, next) {
-    const url = "https://github.com/login/oauth/authorize?client_id=" + this.options.key + "&scope=" + (this.options.scope ? this.options.scope : "") + "&state=" + req.query.state
-	res.redirect(url)
+
+    login(req, res, _) {
+        const url = "https://github.com/login/oauth/authorize?client_id=" + this.options.key + "&scope=" + (this.options.scope ? this.options.scope : "") + "&state=" + req.query.state
+        res.redirect(url)
     }
-    
-    async callback(req, res, next){
+
+    async callback(req, res, _) {
         const response = await fetch("https://github.com/login/oauth/access_token", {
             method: "POST",
             headers: {
@@ -26,7 +26,7 @@ module.exports.GitHub = class {
         const data = await response.text();
         const params = new URLSearchParams(data);
         const accessToken = params.get('access_token')
-        const userResponse = await axios.get('https://api.github.com/user', { headers: { Authorization: `token ${accessToken}`, Accept: 'application/json'}});
+        const userResponse = await get('https://api.github.com/user', { headers: { Authorization: `token ${accessToken}`, Accept: 'application/json' } });
         req.session.GitHub = {
             ...userResponse.data, accessToken
         }
