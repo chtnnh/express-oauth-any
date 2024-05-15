@@ -1,7 +1,7 @@
 {
-  "name": "express-oauth-any",
-  "version": "1.0.3",
-  "description": "OAuth login for any login provider that just works out of the box - for nodejs/expressjs",
+  "name": "express-oauth-providers",
+  "version": "0.1.0",
+  "description": "OAuth login with google, github and twitter - for nodejs/expressjs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^1.6.8",
     "express-session": "^1.17.1",
     "googleapis": "^72.0.0",
     "login-with-twitter": "^1.2.4",
@@ -17,6 +17,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/madhavanmalolan/express-oauth-any"
+    "url": "https://github.com/chtnnh/express-oauth-any"
   }
 }
